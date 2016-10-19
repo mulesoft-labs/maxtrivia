@@ -1,8 +1,8 @@
 # Welcome to MAXTRIVIA
 
-# Why are we building a trivia?
+### Why are we building a trivia?
 
-More often than not, we see recurring questions popping-up across channels, or new Muleys joining the company.
+More often than not, we see recurring questions popping-up across channels.
 
 With those scenarios in mind, it dawn on us it'd be a fun and entertaining way of learning, as well as re-learning about our products.
 
