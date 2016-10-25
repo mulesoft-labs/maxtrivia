@@ -7,6 +7,8 @@
     </head>
     <body>
         <div class="max_background">
+        <div id="question"></div>
+
           <!--div class="max_background" id="bg_1" style="height: 1200px; width: 1055px;"-->
           <!--div class="bg_block" id="bg_1" style="height: 1200px; width: 1055px;"></div-->
           <div class="spin_button">
@@ -140,6 +142,25 @@
                 var reset = resetWheel();
                 setInterval(reset, 10000);
             }
+
+            //Display the Question and Answers for a product.
+                fetch('http://10.8.8.89:8085/products/runtimeManager')
+                .then(function (response) {
+                return response.json();
+            })
+            .then(function (json) {
+                var description = json.data.description;
+                var answers = json.data.answers;
+
+                var table = "<div>";
+                table = table + "<div class=\"description\">" + description + "</div>";
+
+                for (var i = 0; i<answers.length; i++) {
+                    table = table + "<div class=\"answer\">"+answers[i].description+"</div>"           
+                }
+
+                document.getElementById("question").innerHTML = table;
+            });
 
         </script>
     </body>
