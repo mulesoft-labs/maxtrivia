@@ -1,67 +1,45 @@
-<html>
-    <head>
-        <title>MuleSoft's Hackathon</title>
-        <link rel="stylesheet" href="../css/main.css" type="text/css" />
-        <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
-        <script type="text/javascript" src="../js/bootstrap.js"></script>
-        <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="../js/spinme.js"></script>
-        <script type="text/javascript" src="../js/max_min.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    </head>
-  <body>
-    <div class="container-fluid bgimage" style="padding-left: 0px;
-    padding-right: 0px;">
-      <div class="row">
-        <div class="col-md-4 left-column">
-          <div class="row">
-            <img class="maxTrivia" id="idTrivia" src="../imgs/maxTrivia.png" />
+<body>
+    <div class="max_background">
+          <br /><br />
+          <div class="button">
+              <img id="spin_button" src="spin_on.png" alt="Spin" onClick="startSpin();" />
+              <br /><br />
+              &nbsp;&nbsp;<!--a href="#" onClick="resetWheel(); return false;">RESET</a><br/-->
           </div>
-          <div class="row">
-            <img class="maxTheMule" id="idTrivia" src="../imgs/maxTheMule.png" />
-          </div>
-        </div>
-        <div class="col-md-4 middle-column">
-          <div class="roulette_container"></div>
-            <div class="button">
-                <img id="spin_button" src="spin_on.png" alt="Spin" onClick="startSpin();" />
-                <br /><br />
+      </div>
+      <div class="max_trivia">
+            <div class="classTrivia">
+                <img id="idTrivia" src="../imgs/maxTrivia.png" />
                 &nbsp;&nbsp;<!--a href="#" onClick="resetWheel(); return false;">RESET</a><br/-->
             </div>
-            <div class="spinning_wheel" align="center" valign="center">
-                <canvas id="canvas" width="434" height="434"></canvas>
-            </div>
         </div>
-        <div class="col-md-4 right-column" >
-          <div class="row" >
-            <div class="questions">
-              <!--p>Can on-prem customers create users and send invitations from the platform?</p-->
-            </div>
-          </div>
-          <div class="row" id="answerId" >
-            <!--div class="answers">
-              <p>Can on-prem customers create users and send invitations from the platform?</p-->
-            </div>
-            <!--div class="answers ">
-              <p>Can on-prem customers create users and send invitations from the platform?</p>
-            </div-->
-            <!--div class="answers ">
-              <p>Can on-prem customers create users and send invitations from the platform?</p-->
-            </div-->
-          </div>
-        </div>
+      <div class="spinning_wheel" align="center" valign="center">
+          <canvas id="canvas" width="434" height="434"></canvas>
       </div>
     </div>
+    <div class="footer">
+      <div class="products_icons">
+        <ul>
+          <p id="cup"><img src="../imgs/cupoff.png"></p>
+          <p id="am"><img src="../imgs/amaward.png"></p>
+          <p id="ap"><img src="../imgs/apaward.png"></p>
+          <p id="ch"><img src="../imgs/chaward.png"></p>
+          <p id="ex"><img src="../imgs/exaward.png"></p>
+          <p id="hy"><img src="../imgs/hyaward.png"></p>
+          <p id="st"><img src="../imgs/staward.png"></p>
+        </ul>
+      </div> <!--closing products_icons-->
+    </div>  <!--closing footer-->
     <script>
-    // Create new wheel object specifying the parameters at creation time.
+        // Create new wheel object specifying the parameters at creation time.
     var theWheel = new spinme({
             'numSegments'  : 6,     // Specify number of segments.
             'outerRadius'  : 212,   // Set outer radius so wheel fits inside the background.
             'textFontSize' : 28,    // Set font size as desired.
             'segments'     :        // Define segments including colour and text.
             [
-               {'fillStyle' : '#114459', 'text' : 'AP', 'id' : 'apimanager'},
-               {'fillStyle' : '#087299', 'text' : 'RM', 'id' : 'runtimeManager'},
+               {'fillStyle' : '#114459', 'text' : 'Anypoint Platform', 'id' : 'apimanager'},
+               {'fillStyle' : '#087299', 'text' : 'RM', 'id' : 'RM'},
                {'fillStyle' : '#5e66f9', 'text' : 'CH', 'id' : 'cloudHub'},
                {'fillStyle' : '#114459', 'text' : 'CS', 'id' : 'accessManagement'},
                {'fillStyle' : '#9a63f9 ', 'text' : 'EXCH', 'id' : 'exchange'},
@@ -71,7 +49,7 @@
             {
                 'type'     : 'spinToStop',
                 'duration' : 5,     // Duration in seconds.
-                'spins'    : 12,     // Number of complete spins.
+                'spins'    : 10,     // Number of complete spins.
                 'callbackFinished' : 'alertPrize()'
 
             }
@@ -80,8 +58,6 @@
         // Vars used by the code in this page to do power controls.
         var wheelPower    = 0;
         var wheelSpinning = false;
-        var lastAnswers;
-        var lastProduct;
 
         // -------------------------------------------------------
         // Function to handle the onClick on the power buttons.
@@ -115,8 +91,10 @@
                 // the current animation. The user will have to reset before spinning again.
                 wheelSpinning = true;
 
+            }else if (wheelSpinning == true){
+              document.getElementById('spin_button').src       = "spin_on.png";
+              document.getElementById('spin_button').className = "";
             }
-
         }
 
         // -------------------------------------------------------
@@ -140,54 +118,30 @@
         {
             // Get the segment indicated by the pointer on the wheel background which is at 0 degrees.
             var winningSegment = theWheel.getIndicatedSegment();
-            getQuestions(winningSegment.id);
             // Do basic alert of the segment text. You would probably want to do something more interesting with this information.
             //alert("You have won " + winningSegment.text);
+            if (winningSegment.text === "CS")
+            {
+              document.getElementById("am").style.visibility='visible';
+            }else if (winningSegment.text === "AP")
+            {
+              document.getElementById("ap").style.visibility='visible';
+            }else if (winningSegment.text === "CH")
+            {
+              document.getElementById("ap").style.visibility='visible';
+            }else if (winningSegment.text === "EXCH")
+            {
+              document.getElementById("ex").style.visibility='visible';
+            }else if (winningSegment.text === "RM")
+            {
+              document.getElementById("hy").style.visibility='visible';
+            }else if (winningSegment.text === "STO"){
+              document.getElementById("st").style.visibility='visible';
+            }
+            var reset = resetWheel();
+            setInterval(reset, 10000);
 
-            resetWheel();
-          }
-
-        function getQuestions(productName){
-          fetch('http://ec2-35-162-13-71.us-west-2.compute.amazonaws.com:8080/products/'+productName)
-              .then(function (response) {
-              return response.json();
-              lastProduct = productName;
-          })
-          .then(function (json) {
-              var description = json.data.description;
-              var answers = json.data.answers;
-
-              var table = "<div>";
-              //table = table + "<div class=\"questions\">" + description + "</div>";
-              table = "<div class=\"questions\">" + description + "</div>";
-
-              for (var i = 0; i<answers.length; i++) {
-                  table = table + "<div class=\"answers\" onClick=\"validateAnswer("+i+")\" id=\"answer_"+i+"\">"+answers[i].description+"</div>"
-              }
-              console.log(table);
-              lastAnswers = answers;
-              document.getElementById("answerId").innerHTML = table;
-          });
         }
 
-      function validateAnswer(answerId){
-        if(lastAnswers[answerId].is_correct){
-          displayBadge(lastProduct);
-          document.getElementById("answer_"+answerId).style.color='#00ff00';
-        }
-      }
-      //Display badge on right answer
-      function displayBadge(product){
-        var mapProducts = {
-          "CS": "am",
-          "AP": "ap",
-          "CH": "ch",
-          "EXCH": "ex",
-          "RM": "hy",
-          "STO": "st",
-        };
-        document.getElementById(mapProducts[product]).style.visibility='visible';
-      }
     </script>
-  </body>
-</html>
+</body>

@@ -1,5 +1,5 @@
 /*
-Wheel of questions
+MAX TRIVIA
 */
 
 .html {
@@ -17,6 +17,92 @@ body, html, div, ol, ul, li, footer, h1, p, a
     vertical-align: baseline;
 }
 
+.maxTheMule {
+    width: 332px;
+    height: 465px;
+    padding-left: 25px;
+}
+
+.maxTrivia {
+    width: 332px;
+
+    padding-left: 25px;
+}
+.container-fluid {
+padding-left: 0px;
+padding-right: 0px;
+height: calc(100vh - 15px);
+}
+
+.row {
+  border: 1px solid;
+}
+
+.left-column, .middle-column, .right-column {
+  border: 1px solid;
+  height: calc(100vh - 15px);
+}
+
+.questions, .answers{
+  margin-top: 70px;
+  margin-bottom: 70px;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid;
+  color: #000000;
+  background-color: #ffffff;
+
+}
+
+.roulette_container{
+    margin-top: 60%;
+    /* margin-left: 10%; */
+    /* margin-right: 10%; */
+    margin-bottom: 10px;
+    border: 1px solid;
+    height: 400px;
+    /*background-image: url(../imgs/bgimage.png);*/
+    width: 417px;
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    background-size: contain;
+}
+
+.questions{
+  font-size: large;
+}
+
+
+.answers{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: block;
+  font-size: large;
+}
+
+.bgimage{
+  background-image: url(../imgs/canvas.png);
+  background-repeat: no-repeat;
+  background-clip: content-box;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.correct{
+  background-color: #00ff00;
+}
+
+.wrong{
+  background-color: red;
+}
+
 .div
 {
   display: block;
@@ -31,9 +117,7 @@ body, html, div, ol, ul, li, footer, h1, p, a
   height:100px;
   /*background:#ccc;*/
 }
-.spinner {
-  cursor: pointer;
-  color: red;
+div.spin {
   font-weight: bold;
   border: none;
   position: absolute;
@@ -43,25 +127,13 @@ body, html, div, ol, ul, li, footer, h1, p, a
   left: 125px;
   border-radius: 100%;
   z-index: 1000;
-  background-color: blue;
-}
-
-.spinner .pointer {
-  position: absolute;
-  width: 0;
-	height: 0;
-  top: -8px;
-  left: 15px;
-	border-left: 10px solid transparent;
-	border-right: 10px solid transparent;
-	border-bottom: 10px solid blue;
 }
 
 /* Sets the background image for the wheel */
 .spinning_wheel
 {
     /*background-image: url(max_b1.png);*/
-    background-image: url(./wheel_canvas.png);
+    background-image: url(./background.png);
     background-position: center;
     /*background-repeat: none;most likely an invalid operation here*/
     width: 438px;
@@ -72,6 +144,8 @@ body, html, div, ol, ul, li, footer, h1, p, a
 }
 
 .spinning_wheel canvas {
+  /*text-rendering: geometricPrecision;
+  text-align: center;*/
   margin-top: 102px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -99,7 +173,7 @@ div.max_background div.align
     text-align: center;
 }
 
-div.spin_button
+.button
 {
     margin-right:70px;
     position: absolute;
