@@ -19,8 +19,8 @@ body, html, div, ol, ul, li, footer, h1, p, a
 
 .maxTheMule {
     width: 332px;
-    height: 465px;
-    padding-left: 25px;
+    height: 445px;
+    padding-left: 45px;
 }
 
 .maxTrivia {
@@ -35,12 +35,24 @@ height: calc(100vh - 15px);
 }
 
 .row {
-  border: 1px solid;
+  /*border: 1px solid;*/
 }
 
 .left-column, .middle-column, .right-column {
-  border: 1px solid;
+  /*border: 1px solid;*/
   height: calc(100vh - 15px);
+}
+
+.right-column, .row{
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  padding-right: 30px;
+  border-right: 50px;
+}
+
+.col-md-1{
+  padding-top: 10px;
+  margin-top: 10px;
 }
 
 .questions, .answers{
@@ -50,18 +62,25 @@ height: calc(100vh - 15px);
   margin-right: 100px;
   padding-left: 10px;
   padding-right: 10px;
-  border: 1px solid;
+  /*border: 1px solid;*/
   color: #000000;
   background-color: #ffffff;
 
 }
+.answer-success{
+    background-color: #5cb85c;
+}
+
+.answer-failed{
+    background-color: #fb0000;
+}
 
 .roulette_container{
-    margin-top: 60%;
-    /* margin-left: 10%; */
-    /* margin-right: 10%; */
-    margin-bottom: 10px;
-    border: 1px solid;
+    margin-top: 30%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 0px;
+    /*border: 1px solid;*/
     height: 400px;
     /*background-image: url(../imgs/bgimage.png);*/
     width: 417px;
@@ -70,12 +89,19 @@ height: calc(100vh - 15px);
     background-size: contain;
 }
 
+.spin_button{
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
 .questions{
   font-size: large;
+  margin: auto;
 }
 
 
-.answers{
+.answers, .button{
   margin-top: 10px;
   margin-bottom: 20px;
   display: block;
@@ -141,6 +167,14 @@ div.spin {
     top: calc(50% - (582px / 2));
     left: calc(50% - (438px / 2));
     position: absolute;
+}
+
+div.col-md-1{
+  padding-left: 0px;
+  padding-right: 35px;
+  /*margin-left: 20;*/
+  margin-right: 65;
+  visibility: hidden;
 }
 
 .spinning_wheel canvas {
