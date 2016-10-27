@@ -1,0 +1,308 @@
+/*
+MAX TRIVIA
+*/
+
+.html {
+    height: 100%;
+}
+
+body, html, div, ol, ul, li, footer, h1, p, a
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    /*height: 100%;*/
+    font-size: 100%;
+    font-family: arial;
+    vertical-align: baseline;
+}
+
+.maxTheMule {
+    width: 332px;
+    height: 445px;
+    padding-left: 45px;
+}
+
+.maxTrivia {
+    width: 332px;
+
+    padding-left: 25px;
+}
+.container-fluid {
+padding-left: 0px;
+padding-right: 0px;
+height: calc(100vh - 15px);
+}
+
+.row {
+  /*border: 1px solid;*/
+}
+
+.left-column, .middle-column, .right-column {
+  /*border: 1px solid;*/
+  height: calc(100vh - 15px);
+}
+
+.right-column, .row{
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  padding-right: 30px;
+  border-right: 50px;
+}
+
+.col-md-1{
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.questions, .answers{
+  margin-top: 70px;
+  margin-bottom: 70px;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  /*border: 1px solid;*/
+  color: #000000;
+  background-color: #ffffff;
+
+}
+.answer-success{
+    background-color: #5cb85c;
+}
+
+.answer-failed{
+    background-color: #ff0000;
+}
+
+.roulette_container{
+    margin-top: 30%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 0px;
+    /*border: 1px solid;*/
+    height: 400px;
+    /*background-image: url(../imgs/bgimage.png);*/
+    width: 417px;
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    background-size: contain;
+}
+
+.spin_button{
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.questions{
+  font-size: large;
+  margin: auto;
+}
+
+
+.answers, .button{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: block;
+  font-size: large;
+}
+
+.bgimage{
+  background-image: url(../imgs/canvas.png);
+  background-repeat: no-repeat;
+  background-clip: content-box;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.correct{
+  background-color: #00ff00;
+}
+
+.wrong{
+  background-color: red;
+}
+
+.div
+{
+  display: block;
+}
+
+.footer
+{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height:100px;
+  /*background:#ccc;*/
+}
+div.spin {
+  font-weight: bold;
+  border: none;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 125px;
+  left: 125px;
+  border-radius: 100%;
+  z-index: 1000;
+}
+
+/* Sets the background image for the wheel */
+.spinning_wheel
+{
+    /*background-image: url(max_b1.png);*/
+    background-image: url(./background.png);
+    background-position: center;
+    /*background-repeat: none;most likely an invalid operation here*/
+    width: 438px;
+    height: 582px;
+    top: calc(50% - (582px / 2));
+    left: calc(50% - (438px / 2));
+    position: absolute;
+}
+
+div.col-md-1{
+  padding-left: 0px;
+  padding-right: 35px;
+  /*margin-left: 20;*/
+  margin-right: 65;
+  visibility: hidden;
+}
+
+.spinning_wheel canvas {
+  /*text-rendering: geometricPrecision;
+  text-align: center;*/
+  margin-top: 102px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  background-position-y: 50%;
+}
+
+div.max_background
+{
+    background-image: url(./max_b1.png);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+    background-position-y: 50%;
+}
+div.max_background div.align
+{
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    text-align: center;
+}
+
+.button
+{
+    margin-right:70px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.footer
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*background-color: currentColor;*/
+  padding: 25px 0 0;
+}
+
+div.products_icons
+{
+  min-width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding-bottom: 25px;
+  /*border-bottom: 1px solid #66696a;*/
+}
+
+div.products_icons ul
+{
+  display: flex;
+  align-items: center;
+}
+
+div.products_icons li
+{
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: normal;
+  margin-right: 5px;
+  padding-left: 25px;
+  /*align-items: center;*/
+}
+
+div.products_icons p
+{
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: normal;
+  margin-right: 5px;
+  padding-left: 25px;
+  visibility: hidden;
+  /*align-items: center;*/
+}
+
+.ol
+{
+  list-style: none;
+}
+
+.li
+{
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+/*div.html5_logo
+{
+    margin-left:70px;
+}*/
+
+/* Styles for the power selection controls */
+table.power
+{
+    background-color: #cccccc;
+    cursor: pointer;
+    border:1px solid #333333;
+}
+
+table.power th
+{
+    background-color: white;
+    cursor: default;
+}
+
+/* Style applied to the spin button once a power has been selected */
+.clickable
+{
+    cursor: pointer;
+}
+
+/* Other misc styles */
+.margin_bottom
+{
+    margin-bottom: 5px;
+}

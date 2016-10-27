@@ -1,0 +1,211 @@
+<html>
+    <head>
+        <title>MuleSoft's Hackathon</title>
+        <link rel="stylesheet" href="css/main.css" type="text/css" />
+        <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/max_min.js"></script>
+        <script type="text/javascript" src="js/spinme.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    </head>
+  <body>
+    <div class="container-fluid bgimage" style="padding-left: 0px;
+    padding-right: 0px;">
+      <div class="row">
+        <div class="col-md-4 left-column">
+          <div class="row">
+            <img class="maxTrivia" id="idTrivia" src="imgs/maxTrivia.png" />
+          </div>
+          <div class="row">
+            <img class="maxTheMule" id="idTrivia" src="imgs/maxTheMule.png" />
+          </div>
+        </div>
+        <div class="col-md-4 middle-column">
+          <div class="row">
+            <div class="col-md-1">
+              <img id="accessManagement" src="imgs/amaward.png" style="visibility: hidden;"/>
+            </div>
+            <div class="col-md-1">
+              <img id="apimanager" src="imgs/apaward.png"/>
+            </div>
+            <div class="col-md-1">
+              <img id="runtimeManager" src="imgs/hyaward.png"/>
+            </div>
+            <div class="col-md-1">
+              <img id="cloudHub" src="imgs/chaward.png"/>
+            </div>
+          </div>
+
+          <div class="roulette_container"></div>
+            <div class="spin_button">
+                <div class="spinning_wheel" align="center" valign="center">
+                  <canvas id="canvas" width="434" height="434"></canvas>
+                </div>
+                <img id="spin_button" src="imgs/spin_on.png" alt="Spin" onClick="startSpin();" />
+            </div>
+        </div>
+
+        <div class="col-md-4 right-column">
+          <div class="row" >
+            <div class="col-md-1">
+              <img id="exchange" src="imgs/exaward.png"/>
+            </div>
+            <div class="col-md-1">
+              <img id="studio" src="imgs/staward.png"/>
+            </div>
+          </div>
+          <div class="row" >
+            <div class="questions" id="questionId"></div>
+          </div>
+          <div class="row" >
+            <div class="answers" id="answerId" type="button">
+            <!--div class="button" id="answerId" type="button"-->
+            <!--div class="button" id="answerId"></div-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Create new wheel object specifying the parameters at creation time.
+    var theWheel = new spinme({
+            'numSegments'  : 6,     // Specify number of segments.
+            'outerRadius'  : 212,   // Set outer radius so wheel fits inside the background.
+            'textFontSize' : 28,    // Set font size as desired.
+            'segments'     :        // Define segments including colour and text.
+            [
+               {'fillStyle' : '#114459', 'text' : 'AP', 'id' : 'apimanager'},
+               {'fillStyle' : '#087299', 'text' : 'RM', 'id' : 'runtimeManager'},
+               {'fillStyle' : '#5e66f9', 'text' : 'CH', 'id' : 'cloudHub'},
+               {'fillStyle' : '#114459', 'text' : 'CS', 'id' : 'accessManagement'},
+               {'fillStyle' : '#9a63f9', 'text' : 'EXCH', 'id' : 'exchange'},
+               {'fillStyle' : '#5e66f9', 'text' : 'STO', 'id' : 'studio'},
+            ],
+            'animation' :           // Specify the animation to use.
+            {
+                'type'     : 'spinToStop',
+                'duration' : 5,     // Duration in seconds.
+                'spins'    : 12,     // Number of complete spins.
+                'callbackFinished' : 'alertPrize()'
+
+            }
+        });
+
+        // Vars used by the code in this page to do power controls.
+        var wheelPower    = 0;
+        var wheelSpinning = false;
+        var lastAnswers;
+        var lastProduct;
+
+        // -------------------------------------------------------
+        // Function to handle the onClick on the power buttons.
+        // -------------------------------------------------------
+        function powerSelected(powerLevel)
+        {
+            // Ensure that power can't be changed while wheel is spinning.
+            if (wheelSpinning == false)
+            {
+                // Light up the spin button by changing it's source image and adding a clickable class to it.
+                document.getElementById('spin_button').src = "imgs/spin_on.png";
+                document.getElementById('spin_button').className = "clickable";
+            }
+        }
+
+        // -------------------------------------------------------
+        // Click handler for spin button.
+        // -------------------------------------------------------
+        function startSpin()
+
+        {
+            nothingSelected = true;
+
+            // Ensure that spinning can't be clicked again while already running.
+            if (wheelSpinning == false)
+            {
+                // Disable the spin button so can't click again while wheel is spinning.
+                document.getElementById('spin_button').src       = "imgs/spin_off.png";
+                document.getElementById('spin_button').className = "";
+                // Begin the spin animation by calling startAnimation on the wheel object.
+                theWheel.startAnimation();
+                // Set to true so that power can't be changed and spin button re-enabled during
+                // the current animation. The user will have to reset before spinning again.
+                wheelSpinning = true;
+            }
+
+        }
+
+        var nothingSelected = true;
+
+        // -------------------------------------------------------
+        // Function for reset button.
+        // -------------------------------------------------------
+        function resetWheel()
+        {
+            theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
+            theWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
+            theWheel.draw();                // Call draw to render changes to the wheel.
+
+            wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
+        }
+
+        // -------------------------------------------------------
+        // Called when the spin animation has finished by the callback feature of the wheel because I specified callback in the parameters.
+        // -------------------------------------------------------
+        var myMap = new Map();
+        // setting the values
+        function alertPrize()
+        {
+            // Get the segment indicated by the pointer on the wheel background which is at 0 degrees.
+            var winningSegment = theWheel.getIndicatedSegment();
+            getQuestions(winningSegment.id);
+            document.getElementById('answerId').className = "clickable";
+            // resetWheel();
+          }
+
+        function getQuestions(productName){
+          fetch('http://ec2-35-162-13-71.us-west-2.compute.amazonaws.com:8080/products/'+productName)
+              .then(function (response) {
+              lastProduct = productName;
+              return response.json();
+          })
+          .then(function (json) {
+              var description = json.data.description;
+              var answers = json.data.answers;
+
+              var question = "<div class=\"questions\">" + description + "</div>";
+              var table = "";
+
+              for (var i = 0; i<answers.length; i++) {
+                  table = table + "<div class=\"answers\" onClick=\"validateAnswer("+i+")\" id=\"answer_"+i+"\">"+answers[i].description+"</div>"
+              }
+              lastAnswers = answers;
+              document.getElementById("questionId").innerHTML = question;
+              document.getElementById("answerId").innerHTML = table;
+          });
+        }
+
+      function validateAnswer(answerId){
+        if (!nothingSelected) {
+          return;
+        }
+
+        var originalClass = document.getElementById("answer_"+answerId).className;
+
+        if(lastAnswers[answerId].is_correct){
+          document.getElementById("answer_"+answerId).className=originalClass + ' answer-success';
+          displayBadge(lastProduct);
+        } else {
+          document.getElementById("answer_"+answerId).className=originalClass + ' answer-failed';
+        }
+        nothingSelected = false;
+        resetWheel();
+      }
+
+      //Display badge on right answer
+      function displayBadge(product){
+        document.getElementById(product).style.visibility='visible';
+      }
+
+    </script>
+  </body>
+</html>
